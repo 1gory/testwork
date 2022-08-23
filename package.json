@@ -1,11 +1,10 @@
 {
-  "name": "testwork1",
+  "name": "testwork",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "pm2": "pm2 start processes.json --no-daemon",
     "start": "node ./bin/www",
-    "test": "jest",
     "migrate": "node ./bin/migrate.js",
     "start-dev": "webpack serve --open"
   },
@@ -19,7 +18,6 @@
     "express": "~4.16.1",
     "file-loader": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "~1.9.1",
     "pg": "^8.7.3",
     "pm2": "^5.2.0",
     "react": "^18.2.0",
@@ -42,7 +40,6 @@
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
-    "jest": "^28.1.3",
     "style-loader": "^3.3.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0"
