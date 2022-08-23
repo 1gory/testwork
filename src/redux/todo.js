@@ -79,7 +79,7 @@ export const todoSlice = createSlice({
       switch (prevSorting) {
         case 'ASC': nextSorting = 'DESC'; break;
         case 'DESC': nextSorting = ''; break;
-        default: nextSorting = ''; break;
+        default: nextSorting = 'ASC'; break;
       }
       state.sorting[action.payload] = nextSorting;
     },

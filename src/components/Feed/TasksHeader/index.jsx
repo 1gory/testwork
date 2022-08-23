@@ -15,7 +15,7 @@ const Field = styled.div`
 
 export default function TasksHeader() {
   const { sorting } = useSelector((state) => state.todo);
-  const { name: nameSorting, isDone: statusSorting, email: emailSorting } = sorting;
+  const { name: nameSorting, email: emailSorting, isDone: statusSorting } = sorting;
   const dispatch = useDispatch();
   const handleClick = (sortingName) => () => {
     dispatch(changeSorting(sortingName));
