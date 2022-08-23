@@ -1,9 +1,9 @@
 import React from 'react';
-import { Col, Container, Row, Form } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import LoginForm from './LoginForm';
 
-export default function Login () {
+export default function Login() {
   return (
     <Container className="vh-80">
       <Row className="pt-5 justify-content-center">
@@ -18,4 +18,4 @@ export default function Login () {
       </Row>
     </Container>
   );
-};
+}

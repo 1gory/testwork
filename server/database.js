@@ -1,50 +1,49 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(process.env.DB_SCHEMA || 'postgres',
+const sequelize = new Sequelize(
+  process.env.DB_SCHEMA || 'postgres',
   process.env.DB_USER || 'postgres',
   process.env.DB_PASSWORD || 'postgres',
   {
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 5432,
     dialect: 'postgres',
-    dialectOptions: {
-      ssl: process.env.DB_SSL == "true"
-    }
-  });
+  },
+);
 
 const Task = sequelize.define('Task', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   text: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
   },
   isDone: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-    allowNull: false
+    allowNull: false,
   },
   editedByAdministrator: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-    allowNull: false
+    allowNull: false,
   },
 });
 
 const User = sequelize.define('User', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
 });
 

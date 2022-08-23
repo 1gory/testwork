@@ -14,6 +14,6 @@ app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use('/api/tasks', require('./routes/tasks'));
 app.use('/api/auth', require('./routes/auth'));
 
-app.use( '/', indexRouter);
+app.use('/', indexRouter);
 
 module.exports = app;

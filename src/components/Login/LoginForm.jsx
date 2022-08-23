@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Alert, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { login, logout } from '../../redux/auth';
 import { useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { login } from '../../redux/auth';
 
-export default function () {
+export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
     password: '',
-    name: ''
+    name: '',
   });
 
   const validateForm = () => {
@@ -23,7 +23,7 @@ export default function () {
     }
 
     return true;
-  }
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -31,7 +31,6 @@ export default function () {
     if (validateForm()) {
       const result = await dispatch(login(form));
       const response = await unwrapResult(result);
-      console.log('response', response);
       if (response.status !== 200) {
         setErrorMessage(response.response.message);
         return;
@@ -39,12 +38,12 @@ export default function () {
 
       navigate('/');
     }
-  }
+  };
 
   const changeHandler = (event) => {
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   };
 

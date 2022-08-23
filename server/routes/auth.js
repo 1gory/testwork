@@ -1,6 +1,7 @@
 const express = require('express');
+
 const router = express.Router();
-const { handleLogin, handleLogout, handleCheckAuth } = require('../controllers/authController')
+const { handleLogin, handleLogout, handleCheckAuth } = require('../controllers/authController');
 const verifyJWT = require('../middleware/verifyJWT');
 
 router.post('/login', handleLogin);

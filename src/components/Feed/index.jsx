@@ -3,29 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ReactPaginate from 'react-paginate';
 import TaskCard from './TaskCard';
 import Header from '../Header';
 import CardsHeader from './TasksHeader';
-import ReactPaginate from 'react-paginate';
 import { fetchTasks, setOffset } from '../../redux/todo';
 import TaskForm from './TaskForm';
 import { checkAuth } from '../../redux/auth';
 
 function Feed() {
-  const { tasks, totalTasksCount, limit } = useSelector(store => store.todo);
+  const { tasks, totalTasksCount, limit } = useSelector((store) => store.todo);
   let pageCount = Math.ceil(totalTasksCount / limit);
   pageCount = pageCount > 1 ? pageCount : 0;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(fetchTasks({}))
+    dispatch(fetchTasks({}));
   }, [dispatch]);
 
   const handlePageClick = async (event) => {
     const offset = (event.selected * limit) % totalTasksCount;
     dispatch(setOffset(offset));
-    dispatch(fetchTasks())
+    dispatch(fetchTasks());
   };
 
   return (
@@ -43,8 +43,16 @@ function Feed() {
               <>
                 <CardsHeader />
                 <div className="pb-3">
-                  {tasks.map(task => (
-                    <TaskCard {...task} key={task.id} />
+                  {tasks.map((task) => (
+                    <TaskCard
+                      id={task.id}
+                      email={task.email}
+                      text={task.text}
+                      name={task.name}
+                      isDone={task.isDone}
+                      editedByAdministrator={task.editedByAdministrator}
+                      key={task.id}
+                    />
                   ))}
                 </div>
               </>

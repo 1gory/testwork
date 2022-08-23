@@ -17,8 +17,10 @@ const Field = styled.div`
   width: 150px;
 `;
 
-export default function ({ id, email, text, name, isDone, editedByAdministrator }) {
-  const { isAuth } = useSelector(state => state.auth);
+export default function TaskCard({
+  id, email, text, name, isDone, editedByAdministrator,
+}) {
+  const { isAuth } = useSelector((state) => state.auth);
   const TaskText = isAuth ? AdminTaskText : UserTaskText;
   const TaskStatus = isAuth ? AdminTaskStatus : UserTaskStatus;
   return (
@@ -40,5 +42,5 @@ export default function ({ id, email, text, name, isDone, editedByAdministrator 
         </div>
       </div>
     </Wrapper>
-  )
-};
+  );
+}

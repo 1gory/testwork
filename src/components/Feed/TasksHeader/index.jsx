@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { changeSorting, fetchTasks } from '../../../redux/todo';
 import { useDispatch, useSelector } from 'react-redux';
+import { changeSorting, fetchTasks } from '../../../redux/todo';
 import SortingIcon from './SortingIcon';
 
 const Wrapper = styled.div`
@@ -14,10 +14,11 @@ const Field = styled.div`
 `;
 
 export default function TasksHeader() {
-  const { sorting: {name: nameSorting, isDone: statusSorting, email: emailSorting, } } = useSelector(state => state.todo);
+  const { sorting } = useSelector((state) => state.todo);
+  const { name: nameSorting, isDone: statusSorting, email: emailSorting } = sorting;
   const dispatch = useDispatch();
-  const handleClick = (sorting) => () => {
-    dispatch(changeSorting(sorting))
+  const handleClick = (sortingName) => () => {
+    dispatch(changeSorting(sortingName));
     dispatch(fetchTasks());
   };
   return (
@@ -44,4 +45,4 @@ export default function TasksHeader() {
       </div>
     </Wrapper>
   );
-};
+}

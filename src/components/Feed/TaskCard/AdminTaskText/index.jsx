@@ -1,12 +1,12 @@
-import saveIcon from './save-icon.svg';
 import { Form } from 'react-bootstrap';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { updateTaskText } from '../../../../redux/todo'
 import { useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { logout } from '../../../../redux/auth';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../../redux/auth';
+import { updateTaskText } from '../../../../redux/todo';
+import saveIcon from './save-icon.svg';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,26 +20,26 @@ const Icon = styled.img`
   cursor: pointer;
 `;
 
-export default ({ text, id }) => {
+export default function AdminTaskText({ text, id }) {
   const [editedText, setEditedText] = useState(text);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChangeText = (event) => {
     setEditedText(event.target.value);
-  }
+  };
 
-  const handleClick = (id) => async () => {
-    const result = await dispatch(updateTaskText({ id, text: editedText}))
+  const handleClick = (taskId) => async () => {
+    const result = await dispatch(updateTaskText({ id: taskId, text: editedText }));
     if (await unwrapResult(result) !== 200) {
       dispatch(logout());
       navigate('/login');
     }
-  }
+  };
 
   return (
     <Wrapper className="d-flex justify-content-between">
-      <Icon title="Save text" src={saveIcon} onClick={handleClick(id)}/>
+      <Icon title="Save text" src={saveIcon} onClick={handleClick(id)} />
       <Form.Control className="w-100" as="textarea" value={editedText} onChange={handleChangeText} />
     </Wrapper>
   );
-};
+}

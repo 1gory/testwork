@@ -8,21 +8,20 @@ import styled from 'styled-components';
 import { logout } from '../../redux/auth';
 import loginIcon from './login.svg';
 import logoutIcon from './logout.svg';
-import { useNavigate } from 'react-router-dom';
 
 const Icon = styled.img`
   width: 15px;
 `;
 
-export default function() {
-  const { isAuth } = useSelector(state => state.auth);
+export default function Header() {
+  const { isAuth } = useSelector((state) => state.auth);
   // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
     await dispatch(logout());
     // navigate('/');
-  }
+  };
 
   const iconSrc = isAuth ? logoutIcon : loginIcon;
 
@@ -35,12 +34,12 @@ export default function() {
             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           )}
           {!isAuth && (
-            <LinkContainer to='/login'>
+            <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
           )}
         </Nav>
       </Container>
     </Navbar>
-  )
-};
+  );
+}

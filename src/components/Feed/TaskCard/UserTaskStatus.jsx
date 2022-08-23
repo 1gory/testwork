@@ -1,12 +1,14 @@
 import React from 'react';
 
-export default ({ isDone }) => (
-  <>
-    {isDone && (
+export default function UserTaskStatus({ isDone }) {
+  return (
+    <>
+      {isDone && (
       <span className="badge bg-success">Done</span>
-    )}
-    {!isDone && (
+      )}
+      {!isDone && (
       <span className="badge bg-primary">New</span>
-    )}
-  </>
-)
+      )}
+    </>
+  );
+}

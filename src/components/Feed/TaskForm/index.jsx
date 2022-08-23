@@ -1,32 +1,19 @@
 import React, { useState } from 'react';
 import { Alert, Card, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { createTask, fetchTasks } from '../../../redux/todo';
 import { useDispatch } from 'react-redux';
+import { createTask, fetchTasks } from '../../../redux/todo';
 
 export default function TaskForm() {
   const initialForm = {
     email: '',
     name: '',
-    text: ''
+    text: '',
   };
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setSuccessMessage] = useState(false);
   const [form, setForm] = useState(initialForm);
   const dispatch = useDispatch();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setErrorMessage(null);
-    setSuccessMessage(false);
-    if (validateForm()) {
-      await dispatch(createTask(form));
-      await dispatch(fetchTasks());
-      setErrorMessage(null);
-      setSuccessMessage(true);
-      setForm(initialForm);
-    }
-  };
 
   const validateForm = () => {
     if (!form.email.trim().length || !form.name.trim().length || !form.text.trim().length) {
@@ -42,10 +29,23 @@ export default function TaskForm() {
     return true;
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage(null);
+    setSuccessMessage(false);
+    if (validateForm()) {
+      await dispatch(createTask(form));
+      await dispatch(fetchTasks());
+      setErrorMessage(null);
+      setSuccessMessage(true);
+      setForm(initialForm);
+    }
+  };
+
   const changeHandler = (event) => {
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   };
 
@@ -66,21 +66,30 @@ export default function TaskForm() {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="pt-2 pb-2">
             <Form.Control
-              value={form.name} name="name" type="text" placeholder="Enter Name"
+              value={form.name}
+              name="name"
+              type="text"
+              placeholder="Enter name"
               onChange={changeHandler}
             />
           </Form.Group>
 
           <Form.Group className="pt-2 pb-2">
             <Form.Control
-              value={form.email} name="email" type="email" placeholder="Enter email"
+              value={form.email}
+              name="email"
+              type="email"
+              placeholder="Enter email"
               onChange={changeHandler}
             />
           </Form.Group>
 
           <Form.Group className="pt-2 pb-2">
             <Form.Control
-              value={form.text} as="textarea" name="text" placeholder="Enter task text"
+              value={form.text}
+              as="textarea"
+              name="text"
+              placeholder="Enter task text"
               onChange={changeHandler}
             />
           </Form.Group>

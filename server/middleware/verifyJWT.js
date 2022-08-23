@@ -2,17 +2,17 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const verifyJWT = (req, res, next) => {
-  const cookies = req.cookies;
+  const { cookies } = req;
   if (!cookies?.jwt) return res.sendStatus(401);
   const token = cookies.jwt;
-  jwt.verify(
+  return jwt.verify(
     token,
     process.env.ACCESS_TOKEN_SECRET,
-    (err, decoded) => {
+    (err) => {
       if (err) return res.sendStatus(401);
-      next();
-    }
+      return next();
+    },
   );
-}
+};
 
 module.exports = verifyJWT;

@@ -9,11 +9,12 @@ const Icon = styled.img`
   margin-right: 5px;
 `;
 
-export default function ({ sorting }) {
-  let sortIcon = sortIconDefault;
+export default function SortingIcon({ sorting }) {
+  let sortIcon;
   switch (sorting) {
     case 'ASC': sortIcon = sortAscIcon; break;
     case 'DESC': sortIcon = sortDescIcon; break;
+    default: sortIcon = sortIconDefault;
   }
-  return <Icon src={sortIcon} />
+  return <Icon src={sortIcon} />;
 }
