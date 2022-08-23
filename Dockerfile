@@ -5,6 +5,7 @@ RUN adduser -S app
 COPY ./ .
 RUN npm install
 RUN npm install --save pm2
+RUN npm run build
 RUN chown -R app /opt/app
 USER app
 EXPOSE 3000

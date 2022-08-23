@@ -6,7 +6,8 @@
     "pm2": "pm2 start processes.json --no-daemon",
     "start": "node ./bin/www",
     "migrate": "node ./bin/migrate.js",
-    "start-dev": "webpack serve --open"
+    "start-dev": "webpack serve --open",
+    "build": "webpack b"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

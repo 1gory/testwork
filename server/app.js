@@ -17,4 +17,3 @@ app.use('/api/auth', require('./routes/auth'));
 app.use( '/', indexRouter);
 
 module.exports = app;
-
