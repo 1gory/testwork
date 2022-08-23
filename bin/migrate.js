@@ -1,4 +1,4 @@
-const db = require('../server/database.js');
+const db = require('../server/database');
 
 (async () => {
   await db.sequelize.sync({ force: true });
@@ -7,6 +7,4 @@ const db = require('../server/database.js');
     name: 'admin',
     password: '$2b$10$JEFfWdb6vEecUziztPJAGuznKLOFSM3dfgJClOgpraD4Yvex5BP9m'
   });
-
-  process.exit();
 })();
